@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using GameObjects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -44,6 +45,8 @@ namespace UI
 
         private void Start()
         {
+            versionText.text = "v" + Application.version;
+            
             _audioSource = GetComponent<AudioSource>();
 
             UpdateUI();
@@ -120,6 +123,8 @@ namespace UI
 
         [Header("Main Menu")] public GameObject mainMenu;
 
+        public TextMeshProUGUI versionText;
+        
         public Button playButton;
         public Button historyButton;
         public Button settingsButton;
