@@ -1,6 +1,12 @@
-﻿using System.Linq;
+﻿using System.Text;
+#if UNITY_STANDALONE_WIN
+using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
+#else
+using UnityEngine;
+
+#endif
+
 
 namespace Utils
 {
@@ -18,8 +24,7 @@ namespace Utils
             }
         }
 
-#if UNITY_STANDALONE_WIN || UNITY_EDITOR
-
+#if UNITY_STANDALONE_WIN
         private const int KeyboardLayoutNameLength = 9;
         private static readonly string[] AzertyKeyboardLayouts = {
             "0001080c", // Belgian (Comma)
@@ -36,13 +41,13 @@ namespace Utils
             GetKeyboardLayoutName(name);
             _isAzerty = AzertyKeyboardLayouts.Contains(name.ToString().ToLower());
         }
-    
+
 #else
-    
-     public static void DetectKeyboardLayout()
-    {
-        _isAzerty = Application.systemLanguage == SystemLanguage.French;
-    }
+
+        public static void DetectKeyboardLayout()
+        {
+            _isAzerty = Application.systemLanguage == SystemLanguage.French;
+        }
 
 #endif
     }
